@@ -15,8 +15,33 @@
    * 2. handle edgecase(return 0)
    * 3. convert string into array by split method
    * 4. loop the array
-   * 5. check for input needle is available in array
+   * 5. check for input needle's first index value is available in array
    * 5.1 if true return the index
    * 6. return -1
    */
+
+  var strStr = function (haystack, needle) {
+    if (!needle || typeof haystack !== "string" || typeof needle !== "string") {
+      return 0;
+    }
+    const haystackArr = haystack.split("");
+    const needleArr = needle.split("");
+    if (needle.length > haystackArr.length) {
+      return -1;
+    }
+    // debugger;
+    for (let i = 0; i <= haystackArr.length; i++) {
+      if (needleArr[0] === haystackArr[i]) {
+        for (let j = 0; j <= needleArr.length; j++) {
+          if (needleArr[j] !== haystackArr[i + j]) {
+            break;
+          } else if (j === needle.length - 1) {
+            return i;
+          }
+        }
+      }
+    }
+    return -1;
+  };
+  console.log(strStr("mississippi", "issip"));
 </script>
